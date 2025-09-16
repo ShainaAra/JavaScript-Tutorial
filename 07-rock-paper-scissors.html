@@ -8,34 +8,23 @@
 
         <p>Rock Paper Scissors</p>
         <button onclick="
-            const computerMove = pickComputerMove(); // calling the function..... let us reuse code
-
-            let result = '';
-
-            if (computerMove === 'rock') {
-                result = 'Tie.';
-            } else if (computerMove === 'paper') {
-                result = 'You Lose';
-            } else if (computerMove === 'Scissors') {
-                result = 'You win.'
-            }
-
-            alert( `You picked rock. Computer picked ${computerMove}. ${result}`);">Rock</button>
+            playGame('rock');
+            ">Rock</button>
 
         <button onclick="
                 playGame('paper');
             ">Paper</button>
 
         <button onclick="
-                playGame('scissors');
+                playGame('scissors'); //1. call the playGame function  .... 8. it will return here 
             ">Scissors</button>
 
 		<script>
-            function playGame (playerMove) {
-                const computerMove = pickComputerMove();
+            function playGame (playerMove) { //7. when the playGame function finishes, ....8...
+                const computerMove = pickComputerMove(); // 2. call the pickComputerMove function.....5. return back where we called it
             //console.log(pickComputerMove()); //this function now results in the string Rock and then display in the console 
 
-                let result = '';
+                let result = ''; //6. all the code here will run
 
                 if (playerMove === 'scissors'){ // we can put if statemnet inside the statement
                     if (computerMove === 'rock') {
@@ -45,6 +34,7 @@
                     } else if (computerMove === 'Scissors') {
                         result = 'Tie.'
                     }
+
                 } else if (playerMove === 'paper') {
                     if (computerMove === 'rock') {
                         result = 'You win.';
@@ -53,6 +43,7 @@
                     } else if (computerMove === 'Scissors') {
                         result = 'You lose.'
                     }  
+
                 } else if (playerMove === 'rock') {
                     if (computerMove === 'rock') {
                         result = 'Tie.';
@@ -60,15 +51,13 @@
                         result = 'You Lose';
                     } else if (computerMove === 'Scissors') {
                         result = 'You win.'
-                    }
-                    
+                    }  
                 }
                 
                 alert( `You picked ${playerMove}. Computer picked ${computerMove}. ${result}`);
             }
 
-
-
+            //3. go inside this function and run all the code
             function pickComputerMove () {  //everytime you call this function, the return
                 const randomNumber = Math.random();
 
@@ -82,7 +71,7 @@
                 computerMove = 'Scissors';
             }
 
-                return computerMove;
+                return computerMove;  //4. when this function return 
                 //console.log('after'); //doesnt run this code because once we return, the code returns back to where we called the function   Its not going to run anything after the return
             }
 		</script>
