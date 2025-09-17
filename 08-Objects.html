@@ -6,16 +6,128 @@
 
 	<body>
 		<script> 
+        /*
             const product = {
                 name: 'socks',
                 price: 1090
             };
+
+            //check the type of this value
+           //console.log(typeof product);
+
             console.log(product);
             console.log(product.name);
             console.log(product.price);
 
             product.name = 'cotton socks'; 
             console.log(product); 
+
+            product.price = 500;
+            console.log(product);
+
+            product.newProperty = true;
+            console.log(product);
+
+            delete product.newProperty;
+            console.log(product);
+        */
+
+
+
+        /*
+
+        const product2 = {
+            name: 'shirt',
+            ['delivery-time']: '1 day',  //you can remove the [ ], the code still run
+            rating: {       //nested object to make our value more organized
+                stars: 4.5,
+                count: 87
+            },
+            //function inside object - method
+            fun: function function1() {  //save function isnede an object... This work beacause a function is another tyoe of value in JSvale
+                console.log('fundtion inside object');
+            }
+        }
+        console.log(product2);
+        console.log(product2.name);
+        console.log(product2['name']);
+
+        console.log(product2.rating.count); //access the nested object
+        product2.fun(); // this is a function so we can call it like this
+
+        console.log(typeof console.log);
+        //xonsole.log is a function
+        //log is a function that is save inside the console object called method
+
+
+        //CONVERT JS TO JSON
+        //stringify is a method of the JSON object... it results in string
+        console.log(JSON.stringify(product2)); 
+
+        console.log(JSON.stringify(product2));
+
+        const jsonString = JSON.stringify(product2);
+        console.log(JSON.parse(jsonString));
+
+        //convert JSON to JavaScript
+        //JSON.parse(JSON.stringify(product2))
+        */
+         
+
+        console.log('hello'.length);
+        console.log('hello'.toUpperCase());
+
+         // the actual value is created somewhere in the computer's memory
+         //this variable actually just gets a reference that points to that location in the computer's memory
+        
+
+         //const, prevent us from changing the reference in the variable but it doesn't prevent us from reaching in the reference and changing the object that is pointing to
+         const object1 = { 
+            message: 'hello'
+        };
+        const object2 = object1; //it makes a copy of the reference that points to the object
+
+        object1.message = 'Good Job';
+        console.log(object1);
+        console.log(object2);
+
+
+        const object3 = {
+            message: 'Good Job'
+        };
+        console.log(object3 === object1); //not equal to each other...Compares the references, not the values inside
+
+        console.log(object2 === object1); //true. this 2 variables have the same references
+        //NOTE: Comparing the references, not the values inside
+
+
+        //shortcuts for objects
+        const object4 = {
+            message: 'Good Job', 
+            prive: 799
+        };
+        //const message = object4.message;
+        const { message, price } = object4; // destructuring.. this will take the message property out of object4 and save it to the variable named message
+        console.log(message);
+        console.log(price);
+
+        
+        const object5 = {
+            //message: message
+           //message, //shorthand property
+            //method: function function1() { //shorthand method
+            //    console.log('method');
+            //}
+
+            //shortcut of the code above. This shorcut called SHORTHAND METHOD
+            method() { // same thing with the code above
+                console.log('method');
+            }
+        };
+
+        console.log(object5);
+        object5.method();
+
 		</script>
 	</body>
 </html>
