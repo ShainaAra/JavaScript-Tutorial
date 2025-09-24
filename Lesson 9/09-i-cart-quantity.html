@@ -45,7 +45,6 @@
       cartQuantity = 0;
       console.log('Cart was reset.');
 
-      // Display the cart quantity after updating.
       displayCartQuantity();
     ">Reset Cart</button>
 
@@ -58,27 +57,29 @@
       // Display the cart quantity when the page loads.
       displayCartQuantity();
 
+
       function updateCartQuantity(change) {
-        if (cartQuantity + change > 10) {
+        if (cartQuantity + change > 10) { // current cart quantity plus the number to add s greater than 10, it stop the function using return.
           alert('The cart is full');
           return;
         }
 
-        if (cartQuantity + change < 0) {
+        if (cartQuantity + change < 0) { //current cart quantity minus the number you're trying to remove is less than 0, stop the function with return
           alert('Not enough items in the cart');
           return;
         }
 
-        cartQuantity += change;
+        cartQuantity += change;  //shorthand for cartQuantity = cartQuantity + change....adding something to its current value.
 
-        // Display the cart quantity after updating.
         displayCartQuantity();
       }
 
+
       function displayCartQuantity() {
-        document.querySelector('.js-cart-quantity')
+        document.querySelector('.js-cart-quantity') //Finds the HTML element with class js-cart-quantity
           .innerHTML = `Cart quantity: ${cartQuantity}`;
       }
+
     </script>
   </body>
 </html>

@@ -7,7 +7,6 @@
             body {
                 font-family: Arial;
             }
-
             .subscribe-button {
                 border: none;
                 background-color: black;
@@ -21,9 +20,7 @@
                 cursor: pointer;
                 margin-bottom: 30px;
             }
-
-            .is-subscrib
-            ed {
+            .is-subscribeded {
                 background-color: rgb(240, 240, 240);
                 color: black;
             }
@@ -44,9 +41,7 @@
                 cursor: pointer;
             }
         </style>
-
 	</head>
-
 
 	<body>
         <p>YouTube Subscribe Button</p>
@@ -56,7 +51,7 @@
 
         <p>Amazon Shipping Calculator</p>
         <input placeholder="Cost of order" 
-        class="js-cost-input cost-input" onkeydown="
+        class="js-cost-input cost-input" onkeydown=" // class named js-cost input for js and cost-input for styling
             handleCostKeydown(event);
         ">
 
@@ -67,14 +62,6 @@
 
 
 		<script>
-
-            String(25) 
-            console.log('25' - 5);
-            console.log('25' + 5);
-            
-            window.document
-            window.console.log('window');
-            window.alert 
 
             function handleCostKeydown(event) {
                 if (event.key === 'Enter') {
@@ -94,12 +81,11 @@
                     .innerHTML = `$${cost}`;
             }
 
-
             function subscribe() {
                 const buttonElement = document.querySelector('.js-subscribe-button');
 
                 if (buttonElement.innerText === 'Subscribe') {
-                    buttonElement.innerHTML = 'subscribed';
+                    buttonElement.innerHTML = 'Subscribed';
                     buttonElement.classList.add('is-subscribed');
                 } else {
                     buttonElement.innerHTML = 'Subscribe';
@@ -110,20 +96,3 @@
 		</script>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,7 +2,7 @@
 <html>
   <head></head>
   <body>
-    <p class="js-calculation"></p>
+    <p class="js-calculation"></p>     <!--displays above the calculator-->
 
     <p>
       <button onclick="
@@ -69,45 +69,45 @@
 
       <button onclick="
         // Note: eval() takes a string and runs it as code.
-        // Avoid using eval() in real world projects since
-        // it can potentially be given harmful code to run.
-        // Only use eval() for learning purposes.
         calculation = eval(calculation);
 
         // Display the calculation on the page
         displayCalculation();
 
         localStorage.setItem('calculation', calculation);
-      ">=</button>
+        ">=</button>
 
       <button onclick="
         updateCalculation(' / ');
       ">/</button>
+
     </p>
 
     <p>
       <button onclick="
         calculation = '';
-
-        // Display the calculation on the page
-        displayCalculation();
-
+        displayCalculation();   // Display the calculation on the page
         localStorage.setItem('calculation', calculation);
       ">Clear</button>
     </p>
 
+
+
     <script>
       let calculation = localStorage.getItem('calculation') || '';
+
       // Display calculation when the page first loads.
       displayCalculation();
 
+      //when you click a button
       function updateCalculation(value) {
-        calculation += value;
+        calculation += value;  // Add the new value to the current calculation string
 
-        displayCalculation();
+        displayCalculation();   // Update the display on the page to show this new string
 
-        localStorage.setItem('calculation', calculation);
+        localStorage.setItem('calculation', calculation); // Save the updated calculation so it remembers it later
       }
+      
 
       function displayCalculation() {
         document.querySelector('.js-calculation')
