@@ -1,0 +1,42 @@
+body {
+    font-family: Arial;
+}
+
+.todo-grid,/*use comma (,) to style multiple classes at the same time*/
+.todo-input-grid {
+    display: grid;
+    grid-template-columns: 200px 150px 100px ; /* 200px 150px 100 px = 3 columns in a grid....show many columns are in our grid*/
+    column-gap: 10px;/*this sets the spacing between teh columns of the grid*/
+    row-gap: 10px; /*between the rows*/
+    align-items: start;/*vertical alignment*/ 
+}
+
+.todo-input-grid {
+    margin-bottom: 10px;
+    align-items: stretch; /*by default, aign-items: stetch*/
+}
+
+.name-input,
+.due-date-input {
+    font-size: 15px;
+    padding: 6px;
+}
+
+.add-todo-button {
+    background-color: green;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.delete-todo-button {
+   background-color: darkred;
+   color: white;
+   border: none; 
+   font-size: 15px;
+   cursor: pointer;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+
