@@ -11,6 +11,48 @@
 			function greeting() {
 				console.log('hello')
 			}
+			greeting();
+
+
+			const num = 2
+			const function1 = function (){
+				console.log('hello2');
+			}
+			console.log(function1);
+			console.log(typeof function1);
+			function1(); // this will run the code inside the function and display hello2
+
+
+			//We can save a value in an object
+			const object1 = {
+				num:2,		//property with a value
+				fun: function () { // this saves a function inside this object under the property fun
+					console.log('hello3'); 
+				}
+			};
+			//use dot notation to access the function inside the object
+			//because this value (fun) is a function we can call it using bracket
+			object1.fun(); // this run the code inside the function and display hello3
+
+
+
+			//We can pass a value into a function
+				//inside the bracket well create a parameter
+			function display(param) {
+				console.log(param);
+			}
+			display(2);
+
+
+			function run(param) {
+				//we can use param just like a variable because param contains a fucntion
+				param(); // so this code run the function below and display hello4
+			}
+			//this will take the function (run(param)) and save it inside param
+			run(function () {
+				console.log('hello4');
+			});
+		
 		</script>
 	</body>
 </html>

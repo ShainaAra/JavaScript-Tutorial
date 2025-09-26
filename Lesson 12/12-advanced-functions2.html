@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Advanced Function</title>
+
+	</head>
+
+	<body>
+		<button onclick="" class="js-button">Click</button>
+
+		<script>
+			const buttonElement = document.querySelector('.js-button'); //every HTML element has a method called .addEventListener() 
+
+			//create a variable to put it in the remove
+			const eventListener = () => {
+				console.log('click');
+			};
+
+			buttonElement.addEventListener('click', eventListener ); // this code does the same thing with the onclick attribute... addEventListener gives us more control over eventListener
+
+			buttonElement.removeEventListener('click', eventListener);//when we click this button, will no longer run the function
+
+			buttonElement.addEventListener('click', () => {
+				console.log('click2');
+			} ); // this code does the same thing with the onclick attribute...
+
+
+
+
+			/*
+			setTimeout(function(){ 
+				console.log('Time out');
+				console.log('timeout2')
+			}, 3000); 
+
+			console.log('next line');
+
+			setInterval(function() {
+				console.log('interval')
+			}, 3000);
+
+			console.log('next line 2');
+			*/
+
+
+
+			/*
+
+			//Another way to LOOP through an array
+			[
+				'make dinner',
+				'wash dishes',
+				'watch youtube'
+			].forEach((value, index) => {
+				// inside the condition we'll check if the value is equal to the string 'wash dishes'
+				if (value === 'wash dishes') {
+					return;
+					//inside the curly bracjets if it is equal will return. the return statement will end this function early and it will go on to the next function
+					//the return; does the same thing as continue;
+				}
+				console.log(index);//display the index of each value
+				console.log(value);
+			}); 
+	
+
+
+			//regular functions
+			const regularFunctions = function(param, param2) {
+				console.log('hello');
+				return 5;
+			}
+
+
+			//Arrow Functions
+			const arrowFunctions = (param, param2) => {
+				console.log('hello');
+				return 5;
+			};
+			arrowFunctions(); // this run the code inside the arrow function and display hello
+
+
+			const oneParam = param => { 
+				console.log(param + 1)
+			};
+			oneParam(2); // will display 3
+
+			//another shortcut
+	
+			//const oneLine = () => { return 2 + 3; };
+			const oneLine = () =>  2 + 3; 
+			console.log(oneLine());
+		
+
+			//arrow function inside an object
+			const object2 = {
+				method: () => {
+
+				},
+				method() {  //shorthand Method syntax is easier to read than the arrow function. saving function in an object, use this method
+
+				}
+			}
+
+			*/
+
+
+		</script>
+	</body>
+</html>
