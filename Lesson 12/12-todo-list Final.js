@@ -17,10 +17,7 @@ function renderTodoList() { // regular function becuase its easy to read and ena
         const html = `
             <div>${name}</div>
             <div>${dueDate}</div>
-            <button onclick="
-                todoList.splice(${index}, 1);
-                renderTodoList();
-                " class="delete-todo-button">Delete</button> 
+            <button class="delete-todo-button js-delete-button">Delete</button> 
         `;
         todoListHTML += html;
     }) ;
@@ -28,6 +25,16 @@ function renderTodoList() { // regular function becuase its easy to read and ena
 
     document.querySelector('.js-todo-list')
         .innerHTML = todoListHTML;
+
+            //use this querySelectorAll to get all list of the delete button on a page
+    document.querySelectorAll('.js-delete-button')
+                //value, index
+        .forEach((deleteButton, index ) => {
+            deleteButton.addEventListener('click', () => {
+                todoList.splice(index, 1);
+                renderTodoList();
+            });
+        });
 }
 
 document.querySelector('.js-add-todo-button')

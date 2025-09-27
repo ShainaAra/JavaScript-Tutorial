@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>App</title>
+    </head>
+
+    <body>
+        <button class="add-button">Add</button>
+
+        <button class="remove-button">Remove</button>
+
+        <script>
+            let message = 2;
+
+            let setIntervalId;
+
+            let isDisplayingNotification;
+
+            displayNotification();
+
+            document.querySelector('.add-button')
+                .addEventListener('click', () => {
+                    message++;
+                    displayNotification();
+                });
+
+            document.querySelector('.remove-button')
+                .addEventListener('click', () => {
+                     if (message > 0){
+                        message--; 
+
+                        if (message === 0) {
+                            stopNotification();
+                        }
+                    }
+                });
+            
+            function displayNotification() {
+                if (isDisplayingNotification) {
+                    return;
+                }
+                isDisplayingNotification = true
+                                    
+                intervalId = setInterval(() => {
+                    if (document.title === 'App') {
+                    document.title = `(${message}) New Messages`;
+                    } else {
+                        document.title = 'App';
+                    }
+                }, 1000);
+            }
+            
+            function stopNotification() {
+                isDisplayingNotification = false;
+
+                clearInterval(intervalId);
+                document.title = 'App'
+            }
+            
+        </script>
+    </body>
+</html>

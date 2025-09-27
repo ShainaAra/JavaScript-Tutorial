@@ -9,6 +9,7 @@
 		<button onclick="" class="js-button">Click</button>
 
 		<script>
+			/*
 			const buttonElement = document.querySelector('.js-button'); //every HTML element has a method called .addEventListener() 
 
 			//create a variable to put it in the remove
@@ -23,7 +24,7 @@
 			buttonElement.addEventListener('click', () => {
 				console.log('click2');
 			} ); // this code does the same thing with the onclick attribute...
-
+			*/
 
 
 
@@ -103,6 +104,26 @@
 
 			*/
 
+
+							   //this function has 2 parameters
+			console.log([1, -3, 5].filter((value, index) => {
+				/*if (value >= 0) {
+					return true;
+				} else {
+					return false;
+				}*/
+				return value >= 0; // this line of code do the same thing as the code above.
+			}));
+
+
+			//make a copy of this array with each number doubled
+						   //each value in the array and second is the index
+			console.log([1, 1, 3].map((value, index) => {
+				return value * 2;
+			}));
+
+			//shortcut
+			console.log([1, 1, 3].map(value =>  value * 2 ));
 
 		</script>
 	</body>

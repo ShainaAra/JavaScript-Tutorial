@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <button class="js-add-button">Add to cart</button>
+
+        <p class="js-message"></p>
+
+        <script>
+            document.querySelector('.js-add-button')
+                .addEventListener('click', () => {
+                    const messageElement = document.querySelector('.js-message');
+                    messageElement.innerHTML = 'Added!';
+
+                    clearTimeout(timeoutId);
+
+                    //12-p change the function to arrow function
+                    timeoutId = setTimeout(() => {
+                        messageElement.innerHTML = '';
+                    }, 2000);
+                });
+
+          
+        </script>
+    </body>
+</html>
