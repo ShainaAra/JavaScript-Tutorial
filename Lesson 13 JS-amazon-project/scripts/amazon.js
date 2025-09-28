@@ -1,3 +1,4 @@
+import{cart} from '../data/cart.js';
 let productsHTML = '';
 
 //looping trough array of products... generating HTML using JS
@@ -42,7 +43,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-car-${product.id}"> 
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -59,8 +60,12 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {//loop through each button .forEach()
+
+        let addedMessageTimeoutId;
+
         button.addEventListener('click', () =>{
-            const productId = button.dataset.productId;
+            //const productId = button.dataset.productId;
+            const {productId} = button.dataset;//13h
 
             let matchingItem;
 
@@ -74,30 +79,54 @@ document.querySelectorAll('.js-add-to-cart')
             );
             
             //const quantity = quantitySelector.value; //13d
-            const quantity = Number(quantitySelector.value); ///e
+            const quantity = Number(quantitySelector.value); ///13e
 
             if (matchingItem) {
                 //matchingItem.quantity += 1;
-                matchingItem.quantity += quantity; //e
+                matchingItem.quantity += quantity; //13e
             } else {
                 cart.push({
-                    productId: productId,
+                    //productId: productId,
                     //quantity: 1
-                    quantity : quantity //e
-            });
+                    //quantity : quantity //13e
+                    productId, //13h
+                    quantity  //13h
+                });
             }
             //we need a varaible to store teh total quantity
             let cartQuantity = 0;
-
 
             //this is going to loop through each object in the cart
             cart.forEach((item) => {
               cartQuantity += item.quantity;
             });
 
-
             document.querySelector('.js-cart-quantity')
               .innerHTML = cartQuantity;
+
+            const addedMessage = document.querySelector( //13j
+              `.js-added-to-cart-${productId}`
+            );
+
+            addedMessage.classList.add('added-to-cart-visible') //13k
+
+            /*setTimeout(() => { //13L
+              addedMessage.classList.remove('added-to-cart-visible');
+            }, 2000);*/
+
+
+            //check if there's a previous timeout for this
+            //const previousTimeoutId = addedMessageTimeouts[productId];
+
+            if (addedMessageTimeoutId) {
+              clearTimeout(addedMessageTimeoutIdTimeoutId);
+            }
+
+            const timeoutId = setTimeout(() => {
+              addedMessage.classList.remove('added-to-cart-visible');
+            }, 200);
+
+            addedMessageTimeoutId = timeoutId;
         });
     });
 
