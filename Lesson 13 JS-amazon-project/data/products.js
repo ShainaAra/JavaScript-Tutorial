@@ -656,5 +656,23 @@ const products = [
       "apparel",
       "mens"
     ]
+  } , {//13g
+    id: "idnmb2-imgprdbckpck",
+    image: "images/products/backpack.jpg",
+    name: "Unisex Travel Backpack",
+    rating: {
+      stars: 5,
+      count: 3999
+    },
+    priceCents: 4000
+  }, {//13g
+    id: "idlu2-imgprdumbrella",
+    image: "images/products/umbrella.jpg",
+    name: "Automatic Umbrella",
+    rating: {
+      stars: 4.5,
+      count: 3851
+    },
+    priceCents: 1900
   }
 ];
