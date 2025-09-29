@@ -1,4 +1,6 @@
-import{cart} from '../data/cart.js';
+import {cart} from '../data/cart.js';
+import { products } from '../data/products.js';
+
 let productsHTML = '';
 
 //looping trough array of products... generating HTML using JS
@@ -43,7 +45,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart js-added-to-car-${product.id}"> 
+          <div class="added-to-cart js-added-to-cart-${product.id}"> 
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -100,7 +102,7 @@ document.querySelectorAll('.js-add-to-cart')
             cart.forEach((item) => {
               cartQuantity += item.quantity;
             });
-
+            
             document.querySelector('.js-cart-quantity')
               .innerHTML = cartQuantity;
 
@@ -115,16 +117,16 @@ document.querySelectorAll('.js-add-to-cart')
             }, 2000);*/
 
 
-            //check if there's a previous timeout for this
-            //const previousTimeoutId = addedMessageTimeouts[productId];
+            /*check if there's a previous timeout for this
+            const previousTimeoutId = addedMessageTimeouts[productId];*/
 
             if (addedMessageTimeoutId) {
-              clearTimeout(addedMessageTimeoutIdTimeoutId);
+              clearTimeout(addedMessageTimeoutId);
             }
 
             const timeoutId = setTimeout(() => {
               addedMessage.classList.remove('added-to-cart-visible');
-            }, 200);
+            }, 2000);
 
             addedMessageTimeoutId = timeoutId;
         });
