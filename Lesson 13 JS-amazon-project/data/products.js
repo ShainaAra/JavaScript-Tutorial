@@ -668,7 +668,7 @@ const products = [
   }, {//13g
     id: "idlu2-imgprdumbrella",
     image: "images/products/umbrella.jpg",
-    name: "Automatic Umbrella",
+    name: "Green Automatic Umbrella",
     rating: {
       stars: 4.5,
       count: 3851
