@@ -120,11 +120,6 @@ function resetScore() { //12v
     updateScoreElement()
 }
 
-document.querySelector('.js-reset-score-button')
-    .addEventListener('click', () => {
-        resetScore();
-    });
-
 
 function playGame(playerMove) {
     const computerMove = pickComputerMove();
