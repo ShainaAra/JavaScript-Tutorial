@@ -1,3 +1,6 @@
+import { cart } from '../data/cart';
+import { products } from '../data/products';
+
 let productsHTML = ''; //empty string ro hold all the prodduct
 
 //loop through each product from the products array
@@ -58,12 +61,12 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-//this add click event listeners to all the acc to cart button
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
-        button.addEventListener('click', () =>{
 
-            //this get the productId from the data attributr of the clicked button
+        let addedMessageTimeoutId;//13M
+
+        button.addEventListener('click', () =>{
             //const productId = button.dataset.productId;
             const { productId } = button.dataset; //13H.uses destructuring
 
@@ -74,23 +77,16 @@ document.querySelectorAll('.js-add-to-cart')
                     matchingItem = item;
                 }
             });
-
-            //13C. this line seletcting the dropdown element that...for the specific product that was added to the cart
+            //13C. 
             const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
 
-            //13D. to get the value selected in the quantity
-            //const quantity = quantitySelector.value;
-
-            //13E. when updting the cart, instead of using a quantity, convert it into a number...Selects a quantity other than 1
+            //13E.
             const quantity = Number(quantitySelector.value);
 
-
-            // if a product is already in the cart it will increase the quantity
             if (matchingItem) {
                 //matchingItem.quantity += 1;
                 matchingItem.quantity += quantity;//13E
             } else {
-                //if the product is not in the cart, add it with quantity 1
                 cart.push({
                     productId: productId,
                     //quantity: 1
@@ -100,28 +96,36 @@ document.querySelectorAll('.js-add-to-cart')
                 });
             }
 
-            //store the total quantity...calculate total quantity of items in the cart
             let cartQuantity = 0; //to add the items quantity to this varaible
 
-            //calculate the total quantity
             //this is going to loop through each object in the cart
             cart.forEach((item) => {
-                cartQuantity += item.quantity; // add  all the quantities and save it too the variable cartQuantity
+                cartQuantity += item.quantity; 
             });
 
             //update the cart quantity in the html if you click nay item
             document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 
-            //13J. use the DOM to get the 'Added' message element for the product
+            //13J.
             const addedMessage = document.querySelector( 
                 `.js-added-to-cart-${productId}`
             );
-            //13K Add a class to the message element using .classList.add()
+            //13K
             addedMessage.classList.add('added-to-cart-visible') 
 
-            //13L-M. After 2 seconds (use setTimeout), make the message disappear by removing the class.
+            /*13L-M. 
             setTimeout(() => { 
                 addedMessage.classList.remove('added-to-cart-visible');
+            }, 2000);*/
+
+            //13M
+            if (addedMessageTimeoutId) {
+                clearTimeout(addedMessageTimeoutId);
+            }
+
+            const timeoutId = setTimeout(() => {
+                addedMessage.classList.remove('added-to-cart-visible');
             }, 2000);
+            addedMessageTimeoutId = timeoutId;
         });
     });
