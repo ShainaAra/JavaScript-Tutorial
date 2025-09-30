@@ -1,4 +1,4 @@
-export const products = [ // use export to get the products variable out of this file
+const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -656,7 +656,7 @@ export const products = [ // use export to get the products variable out of this
       "apparel",
       "mens"
     ]
-  } , {//13g
+  }, {//13g add some products
     id: "idnmb2-imgprdbckpck",
     image: "images/products/backpack.jpg",
     name: "Unisex Travel Backpack",
