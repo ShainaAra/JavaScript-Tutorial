@@ -1,9 +1,9 @@
-import { cart } from '../data/cart';
-import { products } from '../data/products';
+import {cart, addToCart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
-let productsHTML = ''; //empty string ro hold all the prodduct
 
-//loop through each product from the products array
+let productsHTML = ''; 
+
 products.forEach((product) => {
     productsHTML += `
         <div class="product-container">
@@ -61,64 +61,33 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+function updateCartQuantity() { //handles updating teh webpage rather than managing the cart
+    let cartQuantity = 0; 
+
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity; 
+    });
+
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+}
+
+
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
-
-        let addedMessageTimeoutId;//13M
-
+        let addedMessageTimeoutId;
         button.addEventListener('click', () =>{
-            //const productId = button.dataset.productId;
-            const { productId } = button.dataset; //13H.uses destructuring
+            const productId = button.dataset.productId;
 
-            let matchingItem;
+            addToCart(productId);
+            updateCartQuantity();
 
-            cart.forEach((item) => {
-                if (productId === item.productId) { //check if the product is already in the cart
-                    matchingItem = item;
-                }
-            });
-            //13C. 
-            const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
-
-            //13E.
-            const quantity = Number(quantitySelector.value);
-
-            if (matchingItem) {
-                //matchingItem.quantity += 1;
-                matchingItem.quantity += quantity;//13E
-            } else {
-                cart.push({
-                    productId: productId,
-                    //quantity: 1
-                    //quantity: quantity//13E
-                    productId,//13H Shorthand property
-                    quantity
-                });
-            }
-
-            let cartQuantity = 0; //to add the items quantity to this varaible
-
-            //this is going to loop through each object in the cart
-            cart.forEach((item) => {
-                cartQuantity += item.quantity; 
-            });
-
-            //update the cart quantity in the html if you click nay item
-            document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
-            //13J.
-            const addedMessage = document.querySelector( 
+            const addedMessage = document.querySelector (
                 `.js-added-to-cart-${productId}`
             );
-            //13K
-            addedMessage.classList.add('added-to-cart-visible') 
 
-            /*13L-M. 
-            setTimeout(() => { 
-                addedMessage.classList.remove('added-to-cart-visible');
-            }, 2000);*/
+            addedMessage.classList.add('added-to-cart-visible')
 
-            //13M
             if (addedMessageTimeoutId) {
                 clearTimeout(addedMessageTimeoutId);
             }
@@ -127,5 +96,6 @@ document.querySelectorAll('.js-add-to-cart')
                 addedMessage.classList.remove('added-to-cart-visible');
             }, 2000);
             addedMessageTimeoutId = timeoutId;
+            
         });
     });
