@@ -9,13 +9,14 @@ if (!cart) { // default value if the cart is empty
 }, {
     productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
     quantity: 1
-}]; // array of objects
-};
+}]; 
+}
 
 //localstorage can only save strings. it will convert the cart into a string and we can save it in localstorage
 function saveToStorage() {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));// covert cart into string, and we can sve it to localStrogae
 }
+
 
 export function addToCart(productId) {
     let matchingItem;
@@ -48,12 +49,12 @@ export function addToCart(productId) {
 
 
 //function to remove a product
-export function removeFromCart(productId){
-    const newCart = [];
+export function removeFromCart(productId){ //take the productId and remove it from the cart 
+    const newCart = []; //new empty array
 
-    cart.forEach((cartItem) => {
-        if (cartItem.productId !== productId) {
-            newCart.push(cartItem)
+    cart.forEach((cartItem) => { //looop through the cart
+        if (cartItem.productId !== productId) { // not equal to the product that were trying to remove
+            newCart.push(cartItem) // added here
         }
     });
 
