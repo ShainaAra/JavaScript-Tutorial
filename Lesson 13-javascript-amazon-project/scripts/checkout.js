@@ -1,4 +1,4 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, calculateCartQuantity} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js'
 
@@ -18,7 +18,8 @@ cart.forEach((cartItem) => {
 
     cartSummaryHTML += `
     <div class="cart-item-container 
-        js-cart-item-container-${matchingProduct.id}"> 
+        js-cart-item-container-${matchingProduct.id}">
+         
         <div class="delivery-date">
             Delivery date: Tuesday, June 21
         </div>
@@ -38,9 +39,11 @@ cart.forEach((cartItem) => {
                 <span>
                 Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                 </span>
-                <span class="update-quantity-link link-primary">
+                <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingProduct.id}">
                 Update
                 </span>
+                <input class="quantity-input">
+                <span class="save-quantity-link link-primary js-save-link" data-product-id="${matchingProduct.id}"></span>
                 <span class="delete-quantity-link link-primary js-delete-link js-delete-link" data-product-id="${matchingProduct.id}">
                 Delete
                 </span>
@@ -96,7 +99,6 @@ cart.forEach((cartItem) => {
     `;
 });
 
-
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
 //add eventlistener
@@ -110,5 +112,40 @@ document.querySelectorAll('.js-delete-link')
                 `.js-cart-item-container-${productId}`//
             );
             container.remove(); // this will remove it from the page
+
+            updateCartQuantity(); //14c
         });
     });
+
+    function updateCartQuantity(){
+        /*let cartQuantity = 0;
+        cart.forEach((cartItem) => {
+            cartQuantity += cartItem.quantity;
+        });*/
+        const cartQuantity = calculateCartQuantity();
+
+        document.querySelector('.js-return-to-home-link').innerHTML = `${cartQuantity} items`;
+
+    }
+
+     updateCartQuantity();
+
+     document.querySelectorAll('.js-update-link')
+        .forEach((link) => {
+            const productId = link.dataset.productId;
+            
+            const conatiner = document.querySelector(
+                `.js-cart-item-container-${productId}`
+            );
+            container.classList.add('is-editing-quantity');
+        });   
+
+
+    
+
+
+   
+
+    
+
+    
