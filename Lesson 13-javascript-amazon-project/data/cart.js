@@ -36,9 +36,6 @@ export function addToCart(productId) {
         matchingItem.quantity += quantity;//13E
     } else {
         cart.push({
-            productId: productId,
-            //quantity: 1
-            //quantity: quantity//13E
             productId,
             quantity
         });
@@ -72,5 +69,20 @@ export function calculateCartQuantity() {
     });
 
     return cartQuantity;
+}
+
+//import this in checkout.js
+export function updateQuantity(productId, newQuantity) { 
+    let matchingItem;
+
+    cart.forEach((cartItem) => {
+        if (productId === cartItem.productId) {
+            matchingItem = cartItem;
+        }
+    });
+
+    matchingItem.quantity = newQuantity;
+
+    saveToStorage();
 }
 
