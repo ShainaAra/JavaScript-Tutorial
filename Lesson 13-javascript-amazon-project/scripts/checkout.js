@@ -29,6 +29,24 @@ cart.forEach((cartItem) => {
 
     let deliveryOption;
 
+    deliveryOptions.forEach((option) => {
+        //look for matching ID
+        if (option.id === deliveryOptionId) {
+            deliveryOption = option; // were going to sve inside the variable
+        }
+    });
+
+    const today = dayjs(); //take today's date
+        const deliveryDate = today.add(
+            deliveryOption.deliveryDays,
+            'days'
+        );
+        const dateString = deliveryDate.format(
+            'dddd, MMMM, D, YYYY'
+        );
+
+
+
     cartSummaryHTML += `
     <div class="cart-item-container 
         js-cart-item-container-${matchingProduct.id}">
@@ -62,21 +80,23 @@ cart.forEach((cartItem) => {
                 <span class="save-quantity-link link-primary js-save-link" data-product-id="${matchingProduct.id}">Save</span>
 
                 <span class="delete-quantity-link link-primary js-delete-link js-delete-link" data-product-id="${matchingProduct.id}">
-                Delete
+                    Delete
                 </span>
-            </div>
+                </div>
             </div>
 
             <div class="delivery-options">
-            <div class="delivery-options-title">
-                Choose a delivery option:
-            </div>
-            ${deliveryOptionsHTML(matchingProduct, cartItem)}
+                <div class="delivery-options-title">
+                    Choose a delivery option:
+                </div>
+                ${deliveryOptionsHTML(matchingProduct, cartItem)} 
             </div>
         </div>
     </div>
     `;
 });
+
+
 
 function deliveryOptionsHTML(matchingProduct, cartItem) {
 
@@ -93,11 +113,13 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
             'dddd, MMMM, D, YYYY'
         );
 
+
         const priceString = deliveryOption.priceCents === 0
             ? 'FREE'
             : `$${formatCurrency(deliveryOption.priceCents)} - `;
         
         const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
+        
     
         html +=`   
         <div class="delivery-option">
@@ -117,6 +139,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
     });
     return html;
 }
+
 
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
