@@ -1,22 +1,21 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
-//get the cart from localstorage
-//we need to convert it back into an array to convert it back to an array using JSON.parse.
 
-if (!cart) { // default value if the cart is empty
+if (!cart) { 
     cart = [{
     productId:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    quantity: 2
+    quantity: 2,
+    deliveryOptionId: '1'
 }, {
     productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    quantity: 1
+    quantity: 1,
+    deliveryOptionId: '2'
 }]; 
 }
 
-//localstorage can only save strings. it will convert the cart into a string and we can save it in localstorage
+
 function saveToStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));// covert cart into string, and we can sve it to localStrogae
 }
-
 
 export function addToCart(productId) {
     let matchingItem;
@@ -32,26 +31,25 @@ export function addToCart(productId) {
     const quantity = Number(quantitySelector.value);
 
     if (matchingItem) {
-        //matchingItem.quantity += 1;
-        matchingItem.quantity += quantity;//13E
+        matchingItem.quantity += quantity;
     } else {
         cart.push({
             productId,
-            quantity
+            quantity: 1,
+            deliveryOptionId: '1'
         });
     }
 
     saveToStorage();
 };
 
-
 //function to remove a product
-export function removeFromCart(productId){ //take the productId and remove it from the cart 
-    const newCart = []; //new empty array
+export function removeFromCart(productId){ 
+    const newCart = []; 
 
-    cart.forEach((cartItem) => { //looop through the cart
-        if (cartItem.productId !== productId) { // not equal to the product that were trying to remove
-            newCart.push(cartItem) // added here
+    cart.forEach((cartItem) => {
+        if (cartItem.productId !== productId) { 
+            newCart.push(cartItem) 
         }
     });
 
@@ -71,7 +69,6 @@ export function calculateCartQuantity() {
     return cartQuantity;
 }
 
-//import this in checkout.js
 export function updateQuantity(productId, newQuantity) { 
     let matchingItem;
 
