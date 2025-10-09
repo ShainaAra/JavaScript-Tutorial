@@ -4,7 +4,6 @@ import { getDeliveryOption } from '../../data/deliveryOptions.js';
 import { formatCurrency } from '../utils/money.js';
 
 
-
 //calculate the Items
 export function renderPaymentSummary() {
 // create a variable to save the result of adding them together
