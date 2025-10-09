@@ -11,3 +11,17 @@ export const deliveryOptions = [{ //array of objects
     deliveryDays: 1,
     priceCents: 999
 }];
+
+
+export function getDeliveryOption(deliveryOptionId) {
+
+    let deliveryOption;
+    //look for matching Id
+    deliveryOptions.forEach((option) => {
+      if (option.id === deliveryOptionId) {
+        deliveryOption = option; // save inside the variable
+      }
+    });
+    return deliveryOption || deliveryOption[0];
+    //default value if we don't find a delivery option
+}
