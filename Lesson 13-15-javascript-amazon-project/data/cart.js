@@ -35,7 +35,7 @@ export function addToCart(productId) {
     } else {
         cart.push({
             productId,
-            quantity: 1,
+            quantity: quantity, //add more than 1 items
             deliveryOptionId: '1'
         });
     }
