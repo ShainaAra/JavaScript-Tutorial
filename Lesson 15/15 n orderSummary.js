@@ -3,7 +3,8 @@ import {
   removeFromCart,
   calculateCartQuantity,
   updateQuantity,
-  updateDeliveryOption
+  updateDeliveryOption,
+  updateQuantity
 } from '../../data/cart.js';
 import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
@@ -56,7 +57,6 @@ export function renderOrderSummary() {
               </span>
 
               <input class="quantity-input js-quantity-input-${matchingProduct.id}">
-              
               <span
                 class="save-quantity-link link-primary js-save-link"
                 data-product-id="${matchingProduct.id}">
@@ -196,73 +196,3 @@ function updateCartQuantity() {
 renderCheckoutHeader();
 updateCartQuantity();
 renderOrderSummary();
-
-
-document.addEventListener('click', (event) => {
-  if (event.target.classList.contains('place-order-button')) {
-
-    // 1. Check if cart is empty
-    if (cart.length === 0) {
-      alert('Your cart is empty.');
-      return;
-    }
-
-    // 2. Otherwise, proceed
-    alert('Success Checkout!');
-
-    // 3. Clear the cart
-    cart.length = 0;
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // 4. Reset everything
-    document.querySelector('.js-order-summary').innerHTML = `
-      <div class="empty-cart-message" style="padding: 20px; text-align: center;">
-        Your cart is now empty.
-      </div>
-    `;
-    document.querySelector('.js-payment-summary').innerHTML = `
-      <div class="payment-summary-title">Order Summary</div>
-      <div class="payment-summary-row">
-          <div>Items (0):</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row">
-          <div>Shipping &amp; handling:</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row subtotal-row">
-          <div>Total before tax:</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row">
-          <div>Estimated tax (10%):</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row total-row">
-          <div>Order total:</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <button class="place-order-button button-primary">Place your order</button>
-    `;
-
-    renderCheckoutHeader();
-
-    // Thank you popup
-    const thankYouPopup = document.createElement('div');
-    thankYouPopup.textContent = 'Thank you for your purchase!';
-    thankYouPopup.style.position = 'fixed';
-    thankYouPopup.style.top = '50%';
-    thankYouPopup.style.left = '50%';
-    thankYouPopup.style.transform = 'translate(-50%, -50%)';
-    thankYouPopup.style.backgroundColor = '#fff';
-    thankYouPopup.style.padding = '20px 40px';
-    thankYouPopup.style.borderRadius = '10px';
-    thankYouPopup.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-    thankYouPopup.style.fontSize = '20px';
-    thankYouPopup.style.fontWeight = '600';
-    thankYouPopup.style.zIndex = '9999';
-    document.body.appendChild(thankYouPopup);
-
-    setTimeout(() => thankYouPopup.remove(), 2000);
-  }
-});

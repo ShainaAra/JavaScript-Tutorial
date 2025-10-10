@@ -198,71 +198,83 @@ updateCartQuantity();
 renderOrderSummary();
 
 
+// --- Place Order Button Logic ---
 document.addEventListener('click', (event) => {
   if (event.target.classList.contains('place-order-button')) {
+    // Import the cart data dynamically
+    import('../../data/cart.js').then((module) => {
+      const currentCart = module.cart;
 
-    // 1. Check if cart is empty
-    if (cart.length === 0) {
-      alert('Your cart is empty.');
-      return;
-    }
+      // 1. If cart is empty, show alert and stop
+      if (currentCart.length === 0) {
+        alert('Your cart is empty.');
+        return;
+      }
 
-    // 2. Otherwise, proceed
-    alert('Success Checkout!');
+      //2. Otherwise, proceed with checkout
+      alert('Success Checkout!');
 
-    // 3. Clear the cart
-    cart.length = 0;
-    localStorage.setItem('cart', JSON.stringify(cart));
+      // 3. Clear the cart
+      currentCart.length = 0;
+      localStorage.setItem('cart', JSON.stringify(currentCart)); // Save empty cart
 
-    // 4. Reset everything
-    document.querySelector('.js-order-summary').innerHTML = `
-      <div class="empty-cart-message" style="padding: 20px; text-align: center;">
-        Your cart is now empty.
-      </div>
-    `;
-    document.querySelector('.js-payment-summary').innerHTML = `
-      <div class="payment-summary-title">Order Summary</div>
-      <div class="payment-summary-row">
-          <div>Items (0):</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row">
-          <div>Shipping &amp; handling:</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row subtotal-row">
-          <div>Total before tax:</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row">
-          <div>Estimated tax (10%):</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <div class="payment-summary-row total-row">
-          <div>Order total:</div>
-          <div class="payment-summary-money">$0.00</div>
-      </div>
-      <button class="place-order-button button-primary">Place your order</button>
-    `;
+      // 4. Reset order summary (keep structure)
+      document.querySelector('.js-order-summary').innerHTML = `
+        <div class="empty-cart-message" style="padding: 20px; text-align: center;">
+          Your cart is now empty.
+        </div>
+      `;
 
-    renderCheckoutHeader();
+      // 5. Reset payment summary
+      document.querySelector('.js-payment-summary').innerHTML = `
+        <div class="payment-summary-title">
+            Order Summary
+        </div>
+        <div class="payment-summary-row">
+            <div>Items (0):</div>
+            <div class="payment-summary-money">$0.00</div>
+        </div>
+        <div class="payment-summary-row">
+            <div>Shipping &amp; handling:</div>
+            <div class="payment-summary-money">$0.00</div>
+        </div>
+        <div class="payment-summary-row subtotal-row">
+            <div>Total before tax:</div>
+            <div class="payment-summary-money">$0.00</div>
+        </div>
+        <div class="payment-summary-row">
+            <div>Estimated tax (10%):</div>
+            <div class="payment-summary-money">$0.00</div>
+        </div>
+        <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money">$0.00</div>
+        </div>
+        <button class="place-order-button button-primary">Place your order</button>
+      `;
 
-    // Thank you popup
-    const thankYouPopup = document.createElement('div');
-    thankYouPopup.textContent = 'Thank you for your purchase!';
-    thankYouPopup.style.position = 'fixed';
-    thankYouPopup.style.top = '50%';
-    thankYouPopup.style.left = '50%';
-    thankYouPopup.style.transform = 'translate(-50%, -50%)';
-    thankYouPopup.style.backgroundColor = '#fff';
-    thankYouPopup.style.padding = '20px 40px';
-    thankYouPopup.style.borderRadius = '10px';
-    thankYouPopup.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-    thankYouPopup.style.fontSize = '20px';
-    thankYouPopup.style.fontWeight = '600';
-    thankYouPopup.style.zIndex = '9999';
-    document.body.appendChild(thankYouPopup);
+      // 6. Reset header
+      renderCheckoutHeader();
 
-    setTimeout(() => thankYouPopup.remove(), 2000);
+      // 7. Show thank you popup
+      const thankYouPopup = document.createElement('div');
+      thankYouPopup.textContent = 'Thank you for your purchase!';
+      thankYouPopup.style.position = 'fixed';
+      thankYouPopup.style.top = '50%';
+      thankYouPopup.style.left = '50%';
+      thankYouPopup.style.transform = 'translate(-50%, -50%)';
+      thankYouPopup.style.backgroundColor = '#fff';
+      thankYouPopup.style.padding = '20px 40px';
+      thankYouPopup.style.borderRadius = '10px';
+      thankYouPopup.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+      thankYouPopup.style.fontSize = '20px';
+      thankYouPopup.style.fontWeight = '600';
+      thankYouPopup.style.zIndex = '9999';
+      document.body.appendChild(thankYouPopup);
+
+      setTimeout(() => {
+        thankYouPopup.remove();
+      }, 3000);
+    });
   }
 });
