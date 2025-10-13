@@ -201,20 +201,19 @@ renderOrderSummary();
 document.addEventListener('click', (event) => {
   if (event.target.classList.contains('place-order-button')) {
 
-    // 1. Check if cart is empty
+    //Check if cart is empty
     if (cart.length === 0) {
       alert('Your cart is empty.');
       return;
     }
-
-    // 2. Otherwise, proceed
+    //if the cart is not empty proceed to this arlert
     alert('Success Checkout!');
 
-    // 3. Clear the cart
+    //Clear the cart
     cart.length = 0;
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // 4. Reset everything
+    //Reset everything
     document.querySelector('.js-order-summary').innerHTML = `
       <div class="empty-cart-message" style="padding: 20px; text-align: center;">
         Your cart is now empty.
@@ -246,23 +245,5 @@ document.addEventListener('click', (event) => {
     `;
 
     renderCheckoutHeader();
-
-    // Thank you popup
-    const thankYouPopup = document.createElement('div');
-    thankYouPopup.textContent = 'Thank you for your purchase!';
-    thankYouPopup.style.position = 'fixed';
-    thankYouPopup.style.top = '50%';
-    thankYouPopup.style.left = '50%';
-    thankYouPopup.style.transform = 'translate(-50%, -50%)';
-    thankYouPopup.style.backgroundColor = '#fff';
-    thankYouPopup.style.padding = '20px 40px';
-    thankYouPopup.style.borderRadius = '10px';
-    thankYouPopup.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-    thankYouPopup.style.fontSize = '20px';
-    thankYouPopup.style.fontWeight = '600';
-    thankYouPopup.style.zIndex = '9999';
-    document.body.appendChild(thankYouPopup);
-
-    setTimeout(() => thankYouPopup.remove(), 2000);
   }
 });
