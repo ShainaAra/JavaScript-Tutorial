@@ -26,14 +26,12 @@ textarea {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: none;         /* Prevents manual resizing */
+    resize: none;        
     box-sizing: border-box;
 }
 
-/* Give the textarea a comfortable height */
 textarea {
-    min-height: 100px;     /* 👈 Adjust this as you like (e.g., 80px–150px) */
-    line-height: 1.4;
+   ine-height: 1.4;
 }
 
 

@@ -3,16 +3,13 @@ const API_URL = "https://jsonplaceholder.typicode.com";
 const postContainer = document.getElementById("postContainer");
 const createPostForm = document.getElementById("createPostForm");
 
-// ----------------------------
 // GET POSTS
-// ----------------------------
-
 async function getPosts() {
     try {
         const response = await fetch(`${API_URL}/posts`);
         const posts = await response.json();
 
-        postContainer.innerHTML = ""; // Clear old posts
+        postContainer.innerHTML = " "; 
 
         posts.slice(0, 5).forEach((post) => {
             const postDiv = document.createElement("div");
@@ -32,10 +29,7 @@ async function getPosts() {
     }
 }
 
-// ----------------------------
 // CREATE POST (POST)
-// ----------------------------
-
 createPostForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -54,7 +48,7 @@ createPostForm.addEventListener("submit", async (e) => {
 
     const data = await response.json();
     console.log("Post created:", data);
-    alert("✅ Post created successfully!");
+    alert("Post created successfully!");
     getPosts();
     createPostForm.reset();
   } catch (error) {
@@ -62,9 +56,7 @@ createPostForm.addEventListener("submit", async (e) => {
   }
 });
 
-// ----------------------------
 // UPDATE POST (PUT)
-// ----------------------------
 async function editPost(id) {
     const newTitle = prompt("Enter new title:");
     const newBody = prompt("Enter new body:");
@@ -87,7 +79,7 @@ async function editPost(id) {
 
     if (response.status === 200) {
         console.log("Post updated:", await response.json());
-        alert("✅ Post updated successfully (status 200)");
+        alert("Post updated successfully");
         getPosts();
     }
   } catch (error) {
@@ -95,9 +87,7 @@ async function editPost(id) {
   }
 }
 
-// ----------------------------
 // DELETE POST
-// ----------------------------
 async function deletePost(id) {
     if (!confirm("Are you sure you want to delete this post?")) return;
 
@@ -108,7 +98,7 @@ async function deletePost(id) {
 
     if (response.status === 200) {
         console.log(`Post ${id} deleted`);
-        alert("🗑️ Post deleted successfully!");
+        alert("Post deleted successfully!");
         getPosts();
     }
   } catch (error) {
@@ -116,7 +106,5 @@ async function deletePost(id) {
   }
 }
 
-// ----------------------------
 // INITIAL FETCH
-// ----------------------------
 getPosts();
